@@ -2,49 +2,42 @@
  "actions": [],
  "allow_rename": 1,
  "autoname": "format:SUR-{YY}{MM}{DD}{##}",
- "creation": "2024-04-06 15:03:25.845916",
+ "creation": "2024-04-26 13:45:55.900577",
  "default_view": "List",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "opportunity_from",
-  "from_material_request",
+  "survey_from",
+  "from_doctype",
   "customer",
   "date",
   "customer_address",
+  "material_request",
+  "column_break_1j4ly",
   "contact_person",
   "mobile",
-  "column_break_1j4ly",
   "survey_date",
   "site_location",
   "est_start_date",
+  "opportunity_created",
+  "column_break_qp4v0",
   "est_end_date",
   "assigned_by",
   "assigned_to",
+  "project_type",
+  "create",
   "section_break_h5moi",
   "items",
   "amended_from"
  ],
  "fields": [
   {
-   "fieldname": "items",
-   "fieldtype": "Table",
-   "label": "Items",
-   "options": "Site Visit Item"
-  },
-  {
    "allow_in_quick_entry": 1,
-   "fieldname": "opportunity_from",
+   "fieldname": "customer",
    "fieldtype": "Link",
-   "label": "From Opportunity ",
-   "options": "Opportunity"
-  },
-  {
-   "fieldname": "customer_address",
-   "fieldtype": "Link",
-   "label": "Site Address",
-   "options": "Address"
+   "label": "Customer",
+   "options": "Customer"
   },
   {
    "fieldname": "date",
@@ -52,11 +45,10 @@
    "label": "Date"
   },
   {
-   "allow_in_quick_entry": 1,
-   "fieldname": "customer",
+   "fieldname": "customer_address",
    "fieldtype": "Link",
-   "label": "Customer",
-   "options": "Customer"
+   "label": "Customer Site Address",
+   "options": "Address"
   },
   {
    "allow_in_quick_entry": 1,
@@ -114,6 +106,12 @@
    "fieldtype": "Section Break"
   },
   {
+   "fieldname": "items",
+   "fieldtype": "Table",
+   "label": "Items",
+   "options": "Site Visit Item"
+  },
+  {
    "fieldname": "amended_from",
    "fieldtype": "Link",
    "label": "Amended From",
@@ -124,19 +122,63 @@
    "search_index": 1
   },
   {
-   "fieldname": "from_material_request",
+   "fieldname": "amended_from",
    "fieldtype": "Link",
-   "label": "From Material Request",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Site Survey",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "project_type",
+   "fieldtype": "Table MultiSelect",
+   "label": "Project Type",
+   "options": "Project Type ms"
+  },
+  {
+   "fieldname": "from_doctype",
+   "fieldtype": "Dynamic Link",
+   "label": "From document",
+   "options": "survey_from"
+  },
+  {
+   "fieldname": "column_break_qp4v0",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "create",
+   "fieldtype": "Button",
+   "label": "Create"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "survey_from",
+   "fieldtype": "Link",
+   "label": "Survey From",
+   "options": "DocType"
+  },
+  {
+   "fieldname": "material_request",
+   "fieldtype": "Link",
+   "label": "Material Request Created",
    "options": "Material Request"
+  },
+  {
+   "fieldname": "opportunity_created",
+   "fieldtype": "Link",
+   "label": "Opportunity Created",
+   "options": "Opportunity"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-04-26 13:40:31.061531",
+ "modified": "2024-04-26 17:08:10.892061",
  "modified_by": "Administrator",
  "module": "Iwapp Survey",
- "name": "Site Survey",
+ "name": "Survey",
  "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [

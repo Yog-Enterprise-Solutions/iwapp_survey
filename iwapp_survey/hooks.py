@@ -1,23 +1,23 @@
-app_name = "iwapp_survey"
-app_title = "Iwapp Survey"
-app_publisher = "yes"
-app_description = "Iwapp Survey"
-app_email = "yes@mail.com"
+app_name = "iwapp_model"
+app_title = "Iwapp Model"
+app_publisher = "YES"
+app_description = "Iwapp model"
+app_email = "yes@gmail.com"
 app_license = "MIT"
 
 # Includes in <head>
 # ------------------
 
 # include js, css files in header of desk.html
-# app_include_css = "/assets/iwapp_survey/css/iwapp_survey.css"
-# app_include_js = "/assets/iwapp_survey/js/iwapp_survey.js"
+# app_include_css = "/assets/iwapp_model/css/iwapp_model.css"
+# app_include_js = "/assets/iwapp_model/js/iwapp_model.js"
 
 # include js, css files in header of web template
-# web_include_css = "/assets/iwapp_survey/css/iwapp_survey.css"
-# web_include_js = "/assets/iwapp_survey/js/iwapp_survey.js"
+# web_include_css = "/assets/iwapp_model/css/iwapp_model.css"
+# web_include_js = "/assets/iwapp_model/js/iwapp_model.js"
 
 # include custom scss in every website theme (without file extension ".scss")
-# website_theme_scss = "iwapp_survey/public/scss/website"
+# website_theme_scss = "iwapp_model/public/scss/website"
 
 # include js, css files in header of web form
 # webform_include_js = {"doctype": "public/js/doctype.js"}
@@ -27,7 +27,7 @@ app_license = "MIT"
 # page_js = {"page" : "public/js/file.js"}
 
 # include js in doctype views
-# doctype_js = {"doctype" : "public/js/doctype.js"}
+doctype_js = {"Issue" : "public/js/issue.js"}
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
@@ -54,43 +54,43 @@ app_license = "MIT"
 
 # add methods and filters to jinja environment
 # jinja = {
-# 	"methods": "iwapp_survey.utils.jinja_methods",
-# 	"filters": "iwapp_survey.utils.jinja_filters"
+# 	"methods": "iwapp_model.utils.jinja_methods",
+# 	"filters": "iwapp_model.utils.jinja_filters"
 # }
 
 # Installation
 # ------------
 
-# before_install = "iwapp_survey.install.before_install"
-# after_install = "iwapp_survey.install.after_install"
+# before_install = "iwapp_model.install.before_install"
+# after_install = "iwapp_model.install.after_install"
 
 # Uninstallation
 # ------------
 
-# before_uninstall = "iwapp_survey.uninstall.before_uninstall"
-# after_uninstall = "iwapp_survey.uninstall.after_uninstall"
+# before_uninstall = "iwapp_model.uninstall.before_uninstall"
+# after_uninstall = "iwapp_model.uninstall.after_uninstall"
 
 # Integration Setup
 # ------------------
 # To set up dependencies/integrations with other apps
 # Name of the app being installed is passed as an argument
 
-# before_app_install = "iwapp_survey.utils.before_app_install"
-# after_app_install = "iwapp_survey.utils.after_app_install"
+# before_app_install = "iwapp_model.utils.before_app_install"
+# after_app_install = "iwapp_model.utils.after_app_install"
 
 # Integration Cleanup
 # -------------------
 # To clean up dependencies/integrations with other apps
 # Name of the app being uninstalled is passed as an argument
 
-# before_app_uninstall = "iwapp_survey.utils.before_app_uninstall"
-# after_app_uninstall = "iwapp_survey.utils.after_app_uninstall"
+# before_app_uninstall = "iwapp_model.utils.before_app_uninstall"
+# after_app_uninstall = "iwapp_model.utils.after_app_uninstall"
 
 # Desk Notifications
 # ------------------
 # See frappe.core.notifications.get_notification_config
 
-# notification_config = "iwapp_survey.notifications.get_notification_config"
+# notification_config = "iwapp_model.notifications.get_notification_config"
 
 # Permissions
 # -----------
@@ -129,39 +129,39 @@ app_license = "MIT"
 
 # scheduler_events = {
 # 	"all": [
-# 		"iwapp_survey.tasks.all"
+# 		"iwapp_model.tasks.all"
 # 	],
 # 	"daily": [
-# 		"iwapp_survey.tasks.daily"
+# 		"iwapp_model.tasks.daily"
 # 	],
 # 	"hourly": [
-# 		"iwapp_survey.tasks.hourly"
+# 		"iwapp_model.tasks.hourly"
 # 	],
 # 	"weekly": [
-# 		"iwapp_survey.tasks.weekly"
+# 		"iwapp_model.tasks.weekly"
 # 	],
 # 	"monthly": [
-# 		"iwapp_survey.tasks.monthly"
+# 		"iwapp_model.tasks.monthly"
 # 	],
 # }
 
 # Testing
 # -------
 
-# before_tests = "iwapp_survey.install.before_tests"
+# before_tests = "iwapp_model.install.before_tests"
 
 # Overriding Methods
 # ------------------------------
 #
 # override_whitelisted_methods = {
-# 	"frappe.desk.doctype.event.event.get_events": "iwapp_survey.event.get_events"
+# 	"frappe.desk.doctype.event.event.get_events": "iwapp_model.event.get_events"
 # }
 #
 # each overriding function accepts a `data` argument;
 # generated from the base implementation of the doctype dashboard,
 # along with any modifications made in other Frappe apps
 # override_doctype_dashboards = {
-# 	"Task": "iwapp_survey.task.get_dashboard_data"
+# 	"Task": "iwapp_model.task.get_dashboard_data"
 # }
 
 # exempt linked doctypes from being automatically cancelled
@@ -175,13 +175,13 @@ app_license = "MIT"
 
 # Request Events
 # ----------------
-# before_request = ["iwapp_survey.utils.before_request"]
-# after_request = ["iwapp_survey.utils.after_request"]
+# before_request = ["iwapp_model.utils.before_request"]
+# after_request = ["iwapp_model.utils.after_request"]
 
 # Job Events
 # ----------
-# before_job = ["iwapp_survey.utils.before_job"]
-# after_job = ["iwapp_survey.utils.after_job"]
+# before_job = ["iwapp_model.utils.before_job"]
+# after_job = ["iwapp_model.utils.after_job"]
 
 # User Data Protection
 # --------------------
@@ -211,5 +211,5 @@ app_license = "MIT"
 # --------------------------------
 
 # auth_hooks = [
-# 	"iwapp_survey.auth.validate"
+# 	"iwapp_model.auth.validate"
 # ]

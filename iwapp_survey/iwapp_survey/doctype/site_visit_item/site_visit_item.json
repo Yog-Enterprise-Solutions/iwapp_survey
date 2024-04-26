@@ -11,6 +11,7 @@
   "qty",
   "uom",
   "description",
+  "serial_no",
   "image1",
   "image2",
   "image3",
@@ -64,14 +65,19 @@
    "fieldtype": "Link",
    "label": "Row id",
    "options": "Site Survey"
+  },
+  {
+   "fieldname": "serial_no",
+   "fieldtype": "Data",
+   "label": "Serial No"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-04-24 18:30:34.886347",
+ "modified": "2024-04-26 18:17:16.270778",
  "modified_by": "Administrator",
- "module": "Iwapp Model",
+ "module": "Iwapp Survey",
  "name": "Site Visit Item",
  "owner": "Administrator",
  "permissions": [],
