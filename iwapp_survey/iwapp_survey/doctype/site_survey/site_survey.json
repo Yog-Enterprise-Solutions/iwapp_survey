@@ -1,0 +1,160 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:SUR-{YY}{MM}{DD}{##}",
+ "creation": "2024-04-06 15:03:25.845916",
+ "default_view": "List",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "opportunity_from",
+  "from_material_request",
+  "customer",
+  "date",
+  "customer_address",
+  "contact_person",
+  "mobile",
+  "column_break_1j4ly",
+  "survey_date",
+  "site_location",
+  "est_start_date",
+  "est_end_date",
+  "assigned_by",
+  "assigned_to",
+  "section_break_h5moi",
+  "items",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "items",
+   "fieldtype": "Table",
+   "label": "Items",
+   "options": "Site Visit Item"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "opportunity_from",
+   "fieldtype": "Link",
+   "label": "From Opportunity ",
+   "options": "Opportunity"
+  },
+  {
+   "fieldname": "customer_address",
+   "fieldtype": "Link",
+   "label": "Site Address",
+   "options": "Address"
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "label": "Date"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "label": "Customer",
+   "options": "Customer"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "contact_person",
+   "fieldtype": "Link",
+   "label": "Contact Person",
+   "options": "Contact"
+  },
+  {
+   "fieldname": "mobile",
+   "fieldtype": "Data",
+   "label": "Mobile"
+  },
+  {
+   "fieldname": "column_break_1j4ly",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "survey_date",
+   "fieldtype": "Date",
+   "label": "Survey Date"
+  },
+  {
+   "fieldname": "site_location",
+   "fieldtype": "Data",
+   "label": "Site Location"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "est_start_date",
+   "fieldtype": "Date",
+   "label": "Est. Start Date"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "est_end_date",
+   "fieldtype": "Date",
+   "label": "Est. End date"
+  },
+  {
+   "fieldname": "assigned_by",
+   "fieldtype": "Link",
+   "label": "Assigned by",
+   "options": "User"
+  },
+  {
+   "allow_in_quick_entry": 1,
+   "fieldname": "assigned_to",
+   "fieldtype": "Link",
+   "label": "Assigned to",
+   "options": "User"
+  },
+  {
+   "fieldname": "section_break_h5moi",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Site Survey",
+   "print_hide": 1,
+   "read_only": 1,
+   "search_index": 1
+  },
+  {
+   "fieldname": "from_material_request",
+   "fieldtype": "Link",
+   "label": "From Material Request",
+   "options": "Material Request"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2024-04-24 17:38:05.228260",
+ "modified_by": "Administrator",
+ "module": "Iwapp Model",
+ "name": "Site Survey",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
