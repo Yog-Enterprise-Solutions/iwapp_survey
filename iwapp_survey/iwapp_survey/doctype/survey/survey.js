@@ -2,6 +2,43 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on('Survey', {	
+	setup: function(frm){
+        frm.set_indicator_formatter('item',
+            function(doc) {
+                console.log(doc)
+				var status = "orange";
+				if (doc.serial_no)
+				{
+					console.log("serial no found", doc.serial_no);
+					frappe.call({
+						args: {
+							doctype:"Serial No",							
+							serial_no:doc.serial_no
+						},
+						method:"frappe.client.get_list",
+						callback: function(r){
+							// console.log("serial no doctype data");
+							// console.log(r.message);
+							for (let data of r.message){
+								if (data.name == doc.serial_no){
+									status = "green";
+									doc.warranty_status = 1;
+									console.log("serial no found...", doc.serial_no,status)																		
+									
+								}
+								else{
+									console.log("not found", doc.serial_no, data.name)
+								}
+							}
+						},
+						async: false
+					})
+				}		
+				console.log(doc.serial_no,status)
+                return status
+
+            })
+    },
 	refresh: function (frm) {
 		frm.set_query("survey_from", function(){
 			return {
@@ -20,8 +57,27 @@ frappe.ui.form.on('Survey', {
 				window.open(url, '_blank')
 			}
 		});
-		frm.add_custom_button("Create Opportunity", function () {
-			frappe.msgprint("To create opportunity")			
+		frm.add_custom_button("Create Opportunity and M.R", function () {
+			frappe.call({
+				args: {
+					survey_doc: frm.doc
+				},
+				method: "iwapp_survey.iwapp_survey.doctype.survey.create_opportunity_mr.create_docs",
+				callback: function(r){
+					frappe.msgprint("Doctypes created");
+					var data = r.message;
+					console.log(data);
+					if (data.material_request){
+						frm.doc.material_request = data.material_request;
+					}
+					if (data.opportunity){
+						frm.doc.opportunity_created = data.opportunity;
+					}
+					frm.refresh_fields();
+					frm.save();
+				}
+
+			})
 		});
 		
 
@@ -56,7 +112,7 @@ frappe.ui.form.on('Survey', {
 				project: frm.doc.project_type,
 			},
 
-			method: "iwapp_model.iwapp_model.doctype.site_survey.get_items_from_project.get_items",
+			method: "iwapp_survey.iwapp_survey.doctype.survey.get_items_from_project.get_items",
 			callback: function (r) {
 				// frappe.msgprint("items added successfully");
 				// frm.reload_doc();
@@ -68,6 +124,7 @@ frappe.ui.form.on('Survey', {
 					// console.log(item);
 					var childTable = frm.add_child("items");
 					childTable.item = item;
+					childTable.qty = 1;
 
 				}
 				

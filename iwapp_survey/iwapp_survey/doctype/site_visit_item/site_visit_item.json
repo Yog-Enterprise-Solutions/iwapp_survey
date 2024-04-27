@@ -55,6 +55,7 @@
    "label": "Image"
   },
   {
+   "fetch_from": "item.stock_uom",
    "fieldname": "uom",
    "fieldtype": "Link",
    "label": "UOM",
@@ -64,7 +65,7 @@
    "fieldname": "row_id",
    "fieldtype": "Link",
    "label": "Row id",
-   "options": "Site Survey"
+   "options": "Survey"
   },
   {
    "fieldname": "serial_no",
@@ -75,7 +76,7 @@
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-04-26 18:17:16.270778",
+ "modified": "2024-04-27 17:09:46.700611",
  "modified_by": "Administrator",
  "module": "Iwapp Survey",
  "name": "Site Visit Item",

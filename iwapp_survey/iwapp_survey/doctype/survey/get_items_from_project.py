@@ -8,15 +8,7 @@ def get_items(project):
     projects = json.loads(project)
     # frappe.log_error("projects", f"{projects}")    
     project_list = [item['project_type'] for item in projects]
-    # project_type_list = []
-    # frappe.log_error("project list", f"{project_list}")
-    # for project in project_list:
-
-    # filters = [{"name" ,'in', [project]}]
-    # project_list = list(map(lambda k: k['name'], project_list))
     
-    # # now search all custom_project_type in items to look for this project_list
-    # # site_doc = frappe.get_doc("Site Survey", name)
     item_list = frappe.db.get_list("Item") 
     item_list_req=  []
     for item in item_list:
@@ -26,11 +18,7 @@ def get_items(project):
 
         present = any(project in item_projects for project in project_list)
     #     # frappe.log_error("Projects",f"{projects}\n\n{project_list}")
-        if present:
-            # frappe.log_error("item appended", f"{item['name']}")
-    #         # site_doc.append("items", {
-    #         #     "item" : item['name']
-    #         # })
+        if present:            
             item_list_req.append(item['name'])
     # # site_doc.custom_project_type = project
     # # site_doc.save()

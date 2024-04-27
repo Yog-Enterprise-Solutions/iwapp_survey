@@ -27,7 +27,9 @@ app_license = "MIT"
 # page_js = {"page" : "public/js/file.js"}
 
 # include js in doctype views
-doctype_js = {"Issue" : "public/js/issue.js"}
+doctype_js = {"Issue" : "public/js/issue.js",
+              "Opportunity": "public/js/opportunity.js"
+              }
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
@@ -213,3 +215,26 @@ doctype_js = {"Issue" : "public/js/issue.js"}
 # auth_hooks = [
 # 	"iwapp_model.auth.validate"
 # ]
+fixtures = [
+    {
+        "dt": "Custom Field", "filters" : [
+        [
+            "dt" , "in", [
+                "Issue",
+                "Item",
+                "Opportunity"
+            ]
+        ]
+    ],
+    
+    },
+    {
+        "dt": "Property Setter", "filters": [
+            [
+                "doc_type" , "in", [
+                    "Opportunity Item"
+                ]
+            ]
+        ]
+    }
+]
