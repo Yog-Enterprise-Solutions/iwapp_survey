@@ -174,8 +174,17 @@
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
- "links": [],
- "modified": "2024-04-27 16:34:51.802557",
+ "links": [
+  {
+   "link_doctype": "Issue",
+   "link_fieldname": "custom_survey"
+  },
+  {
+   "link_doctype": "Opportunity",
+   "link_fieldname": "custom_survey"
+  }
+ ],
+ "modified": "2024-04-29 12:22:58.404988",
  "modified_by": "Administrator",
  "module": "Iwapp Survey",
  "name": "Survey",

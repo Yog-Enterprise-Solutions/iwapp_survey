@@ -30,7 +30,13 @@ frappe.ui.form.on('Issue', {
                 },
                 method: "iwapp_survey.iwapp_survey.doctype.survey.create_from_issue.create_site_survey",
                 callback: function (response) {
-                    frappe.msgprint("Survey doctype created");
+                    // frappe.msgprint("Survey doctype created");
+                    var doc_name = response.message
+                    console.log(doc_name)
+                    frm.set_value('custom_survey', doc_name);
+                    frm.refresh_fields();
+                    frm.save();
+                    frappe.set_route("Form", "Survey", doc_name);
                 },
                 async:false
             });

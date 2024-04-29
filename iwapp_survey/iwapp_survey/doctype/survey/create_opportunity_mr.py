@@ -33,6 +33,7 @@ def create_docs(survey_doc):
                 # "uom":item['uom'],                
             })
         doc.insert()
+        doc.save()
         survey_doctype.material_request = doc.name
         doc_refs["material_request"] =doc.name
     
@@ -40,14 +41,22 @@ def create_docs(survey_doc):
         doc = frappe.new_doc("Opportunity")
         doc.opportunity_from = "Customer"
         doc.party_name = survey_doc['customer']
-        doc.custom_surveys_fetched += 1        
+        doc.custom_survey = survey_doc['name']
+        doc.custom_site_address = survey_doc['customer_address']
+        doc.custom_surveys_fetched = 1
+        doc.custom_number_of_surveys = 1
         for item in non_warranty_items:
             doc.append("custom_survey_items", {
                 "row_id" : item['row_id'],
                 "item": item['item'],
                 "qty":item['qty'],                
             })
+            doc.append("items", {
+					"item_code":item['item'],
+					"qty":item['qty'],
+				})
         doc.insert()
+        doc.save()
         survey_doctype.opportunity_created = doc.name        
         doc_refs["opportunity"] = doc.name
     

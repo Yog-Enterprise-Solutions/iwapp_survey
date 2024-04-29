@@ -5,14 +5,14 @@ import frappe
 from frappe.model.document import Document
 
 class Survey(Document):
-	def validate(self):
+	def before_validate(self):
 		for i,row in enumerate(self.items):
 			row.row_id  = f"{self.name}"
 
-	def on_submit(self):		
+	def on_submit(self):
 		# for i,row in enumerate(self.items):
 		# 	row.row_id  = f"{self.name}"
-		frappe.log_error("on submit triggered", "submit")
+		# frappe.log_error("on submit triggered", "submit")
 	
 		opp_doc = frappe.get_doc("Opportunity", self.from_doctype) 
 		new_hash = {}
