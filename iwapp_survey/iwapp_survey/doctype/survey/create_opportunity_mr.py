@@ -55,6 +55,11 @@ def create_docs(survey_doc):
 					"item_code":item['item'],
 					"qty":item['qty'],
 				})
+        survey_multiselect = frappe.new_doc("Survey Multiselect")
+        survey_multiselect.survey = survey_doc['name']
+        
+        doc.append("custom_surveys", survey_multiselect)
+
         doc.insert()
         doc.save()
         survey_doctype.opportunity_created = doc.name        
@@ -62,4 +67,75 @@ def create_docs(survey_doc):
     
     survey_doctype.save()
     return "Successfull"
+
+@frappe.whitelist()    
+def create_opportunity(survey_doc, items):
+    survey_doc = json.loads(survey_doc)
+    items = json.loads(items)
+    survey_doctype = frappe.get_doc("Survey",survey_doc['name'])
+
+    doc = frappe.new_doc("Opportunity")
+    doc.opportunity_from = "Customer"
+    doc.party_name = survey_doc['customer']
+    doc.custom_survey = survey_doc['name']
+    doc.custom_site_address = survey_doc['customer_address']
+    doc.custom_surveys_fetched = 1
+    doc.custom_number_of_surveys = 1
+    for item in items:
+        # frappe.throw(f"{item} received")
+        item = frappe.db.get_value("Site Visit Item", item, ["item", "qty", "row_id", "opportunity_created", "material_request_created"])
+
+        if item[3] ==1 or item[4] == 1 :
+            frappe.throw(f"Opportunity already created for item : {item[0]}")
+        # frappe.throw(f"item here: {item}")
+        doc.append("custom_survey_items", {
+            "item": item[0],            
+            "qty":item[1],                
+            "row_id" : item[2],
+        })
+        doc.append("items", {
+                "item_code":item[0],
+                "qty":item[1],
+            })
+        frappe.db.set_value("Site Visit Item", item, "opportunity_create", 1)
+
+    survey_multiselect = frappe.new_doc("Survey Multiselect")
+    survey_multiselect.survey = survey_doc['name']
     
+    survey_doctype.opportunity_created = doc.name        
+    doc.append("custom_surveys", survey_multiselect)
+    doc.insert()
+    doc.save()
+    
+@frappe.whitelist()
+def create_mr(survey_doc, items):
+    survey_doc = json.loads(survey_doc)
+    items = json.loads(items)
+
+    survey_doctype = frappe.get_doc("Survey",survey_doc['name'])
+    
+
+    current_date = datetime.now()
+    one_week_from_now = current_date + timedelta(weeks=1)
+
+    formatted_date = one_week_from_now.strftime("%Y-%m-%d")
+
+    doc = frappe.new_doc("Material Request")
+    doc.material_request_type= "Material Issue"    
+
+    for item in items:        
+        item = frappe.db.get_value("Site Visit Item", item, ["item", "qty", "row_id", "opportunity_created", "material_request_created"])
+        
+        if item[3] ==1 or item[4] == 1:
+            frappe.throw(f"Opportunity already created for item : {item[0]}")
+
+        doc.append("items", {
+            "item_code" : item[0],
+            "qty":item[1],
+            "schedule_date" : formatted_date
+            # "uom":item['uom'],                
+        })
+        frappe.db.set_value("Site Visit Item", item, "material_request_created", 1)
+    doc.insert()
+    doc.save()
+    survey_doctype.material_request = doc.name

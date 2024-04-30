@@ -125,7 +125,7 @@ doc_events = {
 	# 	"on_trash": "method"
 	# }
     "Opportunity" : {
-        "before_save" : "iwapp_survey.public.opportunity.bs"
+        "validate" : "iwapp_survey.overrides.opportunity.bs"
     }
 }
 

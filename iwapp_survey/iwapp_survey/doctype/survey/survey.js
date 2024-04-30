@@ -57,12 +57,14 @@ frappe.ui.form.on('Survey', {
 				window.open(url, '_blank')
 			}
 		});
-		frm.add_custom_button("Create Opportunity and M.R", function () {
+		frm.add_custom_button("Opportunity", function () {
+			console.log("items: ", frm.get_selected().items)
 			frappe.call({
 				args: {
-					survey_doc: frm.doc
+					survey_doc: frm.doc,
+					items: frm.get_selected().items
 				},
-				method: "iwapp_survey.iwapp_survey.doctype.survey.create_opportunity_mr.create_docs",
+				method: "iwapp_survey.iwapp_survey.doctype.survey.create_opportunity_mr.create_opportunity",
 				callback: function(r){
 					frappe.msgprint("Doctypes created");
 					var data = r.message;
@@ -78,7 +80,31 @@ frappe.ui.form.on('Survey', {
 				}
 
 			})
-		});
+		}, __("Create"));
+
+		frm.add_custom_button("Material Request", function () {
+			frappe.call({
+				args: {
+					survey_doc: frm.doc,
+					items: frm.get_selected().items
+				},
+				method: "iwapp_survey.iwapp_survey.doctype.survey.create_opportunity_mr.create_mr",
+				callback: function(r){
+					frappe.msgprint("Doctypes created");
+					var data = r.message;
+					console.log(data);
+					if (data.material_request){
+						frm.doc.material_request = data.material_request;
+					}
+					if (data.opportunity){
+						frm.doc.opportunity_created = data.opportunity;
+					}
+					frm.refresh_fields();
+					frm.save();
+				}
+
+			})
+		}, __("Create"));
 		
 
 	},
@@ -99,13 +125,62 @@ frappe.ui.form.on('Survey', {
 			}
 		});
 	},
-	project_type: function (frm) {
-		// frm.set_value('items', []);
-		// frm.refresh_field('items');		
-		// frm.set_value("custom_project_type", frm.doc.custom_project_type)
-		// if (frm.doc.__islocal){
-		// 	frm.save();
-		// }
+	// project_type: function (frm) {
+	// 	// frm.set_value('items', []);
+	// 	// frm.refresh_field('items');		
+	// 	// frm.set_value("custom_project_type", frm.doc.custom_project_type)
+	// 	// if (frm.doc.__islocal){
+	// 	// 	frm.save();
+	// 	// }
+	// 	console.log(frm.doc.custom_project_type)
+	// 	frappe.call({
+	// 		args: {
+	// 			project: frm.doc.project_type,
+	// 		},
+
+	// 		method: "iwapp_survey.iwapp_survey.doctype.survey.get_items_from_project.get_items",
+	// 		callback: function (r) {
+	// 			// frappe.msgprint("items added successfully");
+	// 			// frm.reload_doc();
+
+	// 			console.log(r.message);
+	// 			frm.set_value("items", []);
+	// 			frappe.model.clear_table(frm.doc, 'items');
+	// 			for (var item of r.message) {
+	// 				// console.log(item);
+	// 				var childTable = frm.add_child("items");
+	// 				childTable.item = item;
+	// 				childTable.qty = 1;
+
+	// 			}
+				
+	// 				// frm.reload_doc();
+	// 			frm.refresh_fields("items");				
+	// 		}
+	// 	})
+
+	// },	
+	survey_template: function(frm){
+		frappe.call({
+			args: {
+				survay_template: frm.doc.survey_template
+			},
+			method: "iwapp_survey.iwapp_survey.doctype.survey.get_items_form_survey_template.get_items",
+			callback: function(r){
+				console.log(r.message)
+				frm.set_value("items", []);
+				frappe.model.clear_table(frm.doc, 'items');
+				for (var item of r.message) {
+					// console.log(item);
+					var childTable = frm.add_child("items");
+					childTable.item = item;
+					// childTable.qty = 1;
+				}
+				frm.refresh_fields("items");
+			}
+		})
+	},
+	create: function(frm){
 		console.log(frm.doc.custom_project_type)
 		frappe.call({
 			args: {
@@ -129,26 +204,10 @@ frappe.ui.form.on('Survey', {
 				}
 				
 					// frm.reload_doc();
-				frm.refresh_fields("items");
-				
-
+				frm.refresh_fields("items");				
 			}
 		})
 
-	},
-	onload(frm) {
-		if (frm.doc.from_material_request) {
-			frm.add_custom_button("Create Opportunity", function () {
-				// frappe.call({
-				// 	args: {
-
-				// 	}
-				// })
-			})
-		}
-	},
-	create: function(frm){
-		frappe.msgprint("button click working here")
 	}
 	// customer: function(frm){
 	// 	frm.set_query("customer_address", function(){

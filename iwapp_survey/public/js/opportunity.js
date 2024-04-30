@@ -1,11 +1,16 @@
 frappe.ui.form.on('Opportunity', {
-	refresh(frm) {
+	onload(frm){
+        frm.custom_number_of_surveys = frm.doc.custom_surveys ? frm.doc.custom_surveys.length : 0;
+    },
+    refresh(frm) {
         
 		frm.add_custom_button(__('Create Survey'), function(){
             if (frm.doc.__islocal) {
                 frm.save();
             }
-            
+        
+        frm.custom_number_of_surveys = frm.doc.custom_surveys ? frm.doc.custom_surveys.length : 0;        
+        // cur_frm.custom_number_of_surveys = cur_frm.doc.custom_surveys ? cur_frm.doc.custom_surveys.length : 0;
 		// frappe.new_doc("Survey", {
 		//     survey_from: "Opportunity", 
 		//     customer:frm.doc.party_name, 

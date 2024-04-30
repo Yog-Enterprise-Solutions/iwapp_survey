@@ -4,7 +4,7 @@ frappe.ui.form.on('Issue', {
         // your code here
         console.log("triggered mr")
 
-        frm.add_custom_button(__('Create Survey'), function () {
+        frm.add_custom_button(__('Survey'), function () {
             // frappe.msgprint("creating Survey")
             // var doc = frappe.new_doc("Survey", {
             //     survey_from: "Issue", 

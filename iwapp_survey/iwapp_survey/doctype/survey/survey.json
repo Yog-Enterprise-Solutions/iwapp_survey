@@ -25,6 +25,7 @@
   "est_end_date",
   "assigned_by",
   "assigned_to",
+  "survey_template",
   "project_type",
   "create",
   "section_break_h5moi",
@@ -40,6 +41,7 @@
    "options": "Customer"
   },
   {
+   "default": "Today",
    "fieldname": "date",
    "fieldtype": "Date",
    "label": "Date"
@@ -67,6 +69,7 @@
    "fieldtype": "Column Break"
   },
   {
+   "default": "Today",
    "fieldname": "survey_date",
    "fieldtype": "Date",
    "label": "Survey Date"
@@ -134,6 +137,7 @@
   {
    "fieldname": "project_type",
    "fieldtype": "Table MultiSelect",
+   "hidden": 1,
    "label": "Project Type",
    "options": "Project Type ms"
   },
@@ -170,6 +174,12 @@
    "fieldtype": "Link",
    "label": "Opportunity Created",
    "options": "Opportunity"
+  },
+  {
+   "fieldname": "survey_template",
+   "fieldtype": "Link",
+   "label": "Survey Template",
+   "options": "Survey Template"
   }
  ],
  "index_web_pages_for_search": 1,
@@ -182,9 +192,13 @@
   {
    "link_doctype": "Opportunity",
    "link_fieldname": "custom_survey"
+  },
+  {
+   "link_doctype": "Material Request",
+   "link_fieldname": "custom_survey"
   }
  ],
- "modified": "2024-04-29 12:22:58.404988",
+ "modified": "2024-04-29 16:00:38.525123",
  "modified_by": "Administrator",
  "module": "Iwapp Survey",
  "name": "Survey",
