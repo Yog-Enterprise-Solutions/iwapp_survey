@@ -9,7 +9,9 @@
   "item_code",
   "quantity",
   "uom",
-  "rate"
+  "rate",
+  "model_id",
+  "serial_no"
  ],
  "fields": [
   {
@@ -39,12 +41,23 @@
    "fieldname": "rate",
    "fieldtype": "Float",
    "label": "Rate"
+  },
+  {
+   "fieldname": "model_id",
+   "fieldtype": "Link",
+   "label": "Model ID",
+   "options": "Item Model ID"
+  },
+  {
+   "fieldname": "serial_no",
+   "fieldtype": "Data",
+   "label": "Serial No"
   }
  ],
  "index_web_pages_for_search": 1,
  "istable": 1,
  "links": [],
- "modified": "2024-04-26 13:40:32.095333",
+ "modified": "2024-05-02 14:36:33.011867",
  "modified_by": "Administrator",
  "module": "Iwapp Survey",
  "name": "Goods at Site Items",

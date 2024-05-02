@@ -58,11 +58,15 @@ frappe.ui.form.on('Survey', {
 			}
 		});
 		frm.add_custom_button("Opportunity", function () {
-			console.log("items: ", frm.get_selected().items)
+			var items = frm.get_selected().items;
+			console.log("items: ", items)
+			if (items === undefined){
+				frappe.throw("Please select or add items.")
+			}
 			frappe.call({
 				args: {
 					survey_doc: frm.doc,
-					items: frm.get_selected().items
+					items: items
 				},
 				method: "iwapp_survey.iwapp_survey.doctype.survey.create_opportunity_mr.create_opportunity",
 				callback: function(r){
@@ -83,10 +87,15 @@ frappe.ui.form.on('Survey', {
 		}, __("Create"));
 
 		frm.add_custom_button("Material Request", function () {
+			var items = frm.get_selected().items;
+			console.log("items: ", items)
+			if (items === undefined){
+				frappe.throw("Please select or add items.")
+			}
 			frappe.call({
 				args: {
 					survey_doc: frm.doc,
-					items: frm.get_selected().items
+					items: items
 				},
 				method: "iwapp_survey.iwapp_survey.doctype.survey.create_opportunity_mr.create_mr",
 				callback: function(r){
