@@ -51,9 +51,10 @@ frappe.ui.form.on('Survey', {
 			}
 		});
 		
-		frm.add_custom_button("Get Location", function () {
+		frm.add_custom_button("View Location in Map", function () {
 			if (frm.doc.site_location) {
-				var url = `https://google.com/maps/@${frm.doc.site_location}`
+				var url = `https://google.com/maps/search/?api=1&query=${frm.doc.site_location}`
+				console.log(url)
 				window.open(url, '_blank')
 			}
 		});
