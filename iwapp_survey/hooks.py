@@ -225,7 +225,8 @@ fixtures = [
             "dt" , "in", [
                 "Issue",
                 "Item",
-                "Opportunity"
+                "Opportunity",
+                "Survey",
             ]
         ]
     ],
