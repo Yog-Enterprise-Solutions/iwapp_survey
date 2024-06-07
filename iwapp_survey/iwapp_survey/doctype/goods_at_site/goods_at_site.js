@@ -16,6 +16,7 @@ frappe.ui.form.on('Goods at Site', {
 					},
 					callback: function (response) {
 						if (response.message) {
+							frm.set_value('custom_status', 'Returned');
 							frappe.msgprint("Successfully created material receipt for return items (Submitted): " + response.message);
 							// Add response.message to child table 'Return Item'
 
@@ -43,6 +44,8 @@ frappe.ui.form.on('Goods at Site', {
 					},
 					callback: function (response) {
 						if (response.message) {
+							frm.set_value('custom_status', 'Completed');
+
 							frappe.msgprint("Successfully created material receipt for return items (Submitted): " + response.message);
 							// Add response.message to child table 'Return Item'
 
