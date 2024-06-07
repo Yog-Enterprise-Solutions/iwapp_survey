@@ -28,7 +28,9 @@ app_license = "MIT"
 
 # include js in doctype views
 doctype_js = {"Issue" : "public/js/issue.js",
-              "Opportunity": "public/js/opportunity.js"
+              "Opportunity": "public/js/opportunity.js",
+              "Goods at Site" : "iwapp_survey/doctype/goods_at_site.js"
+
               }
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
@@ -126,7 +128,14 @@ doc_events = {
 	# }
     "Opportunity" : {
         "validate" : "iwapp_survey.overrides.opportunity.bs"
-    }
+    },
+    "Delivery Note" :{
+        "on_submit" : "iwapp_survey.iwapp_survey.doctype.goods_at_site.goods_at_site.create_goods_at_site"
+    },
+    "Installation Note" :{
+        "on_submit" : "iwapp_survey.iwapp_survey.doctype.goods_at_site.goods_at_site.update_goods_at_site_from_delivery_note"
+
+    }      
 }
 
 # Scheduled Tasks
