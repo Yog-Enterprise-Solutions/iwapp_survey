@@ -3,6 +3,7 @@
 
 frappe.ui.form.on('Goods at Site', {
 	refresh: function (frm) {
+		frm.trigger("update_indicators");
 		// Ensure the custom buttons are only added once
 		if (!frm.custom_buttons_added) {
 			// Add the first button (Return Draft)
@@ -44,8 +45,7 @@ frappe.ui.form.on('Goods at Site', {
 					},
 					callback: function (response) {
 						if (response.message) {
-							frm.set_value('custom_status', 'Completed');
-
+							frm.set_value('custom_status', 'Completed');		
 							frappe.msgprint("Successfully created material receipt for return items (Submitted): " + response.message);
 							// Add response.message to child table 'Return Item'
 
@@ -59,5 +59,28 @@ frappe.ui.form.on('Goods at Site', {
 
 			frm.custom_buttons_added = true;
 		}
-	}
+	},
+	update_indicators(frm) {
+		const indicator = frappe.get_indicator(frm.doc);
+		// if (indicator) {
+		// 	frm.page.set_indicator(indicator[0], indicator[1]);
+		// } else {
+		// 	frm.page.clear_indicator();
+		// }
+		if (frm.doc.status === "Installed") {
+			frm.page.set_indicator("Installed", "grey");
+		}
+		else if (frm.doc.status === "Returned") {
+			frm.page.set_indicator("Returned", "orange");
+		}
+		else if (frm.doc.status === "Delivered") {
+			frm.page.set_indicator("Delivered", "red");
+		}
+		else if (frm.doc.status === "Completed") {
+			frm.page.set_indicator("Completed", "blue");
+		}
+		 else {
+			frm.page.clear_indicator();
+		}
+	},
 });

@@ -43,12 +43,13 @@ def create_goods_at_site(doc,method=None):
     goods_at_site = frappe.new_doc("Goods at Site")
     goods_at_site.customer = doc.customer
     goods_at_site.delivery_note = doc.name
-    goods_at_site.custom_status = "Delivered"
+    goods_at_site.status = "Delivered"
+    
 
 
     childtable = doc.items
     for items in childtable:
-        goods_at_site.append("custom_delivery_goods_items",{
+        goods_at_site.append("delivery_goods",{
             "item_code":items.item_code,
             "quantity":items.qty,
             "uom":items.uom,
@@ -72,7 +73,8 @@ def update_goods_at_site_from_delivery_note(doc,method=None):
     # If a related Goods at Site document exists, update it
     if gas_name:
         gs_doc = frappe.get_doc("Goods at Site", gas_name)
-        gs_doc.custom_status = "Installed"
+        gs_doc.status = "Installed"
+        
        
         # Loop through items in doc and append them to gs_doc
         for item in doc.items:
@@ -85,7 +87,7 @@ def update_goods_at_site_from_delivery_note(doc,method=None):
             })
 
         # Loop through gs_doc items and append them to return_items
-        for i in gs_doc.custom_delivery_goods_items:
+        for i in gs_doc.delivery_goods:
             gs_doc.append("return_items", {
                 "item_code": i.item_code,
                 "quantity": i.quantity - item.qty,

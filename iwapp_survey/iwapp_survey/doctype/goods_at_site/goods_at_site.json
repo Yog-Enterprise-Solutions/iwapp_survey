@@ -10,6 +10,7 @@
   "customer_details_section",
   "customer",
   "sales_order",
+  "status",
   "column_break_ipcqm",
   "delivery_date",
   "delivery_note",
@@ -18,6 +19,8 @@
   "custodian_name",
   "column_break_epzyv",
   "supervisor",
+  "section_break_hjbgn",
+  "delivery_goods",
   "goods_at_site_section",
   "items",
   "goods_return_section",
@@ -137,12 +140,30 @@
    "fieldtype": "Table",
    "label": "Return Items",
    "options": "Goods at Site Items"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "status",
+   "options": "\nInstalled\nReturned\nCompleted\nDelivered",
+   "search_index": 1
+  },
+  {
+   "fieldname": "section_break_hjbgn",
+   "fieldtype": "Section Break",
+   "label": "Delivery Goods"
+  },
+  {
+   "fieldname": "delivery_goods",
+   "fieldtype": "Table",
+   "label": "Delivery Goods Items",
+   "options": "Goods at Site Items"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2024-05-03 15:40:32.244170",
+ "modified": "2024-06-11 19:00:20.489468",
  "modified_by": "Administrator",
  "module": "Iwapp Survey",
  "name": "Goods at Site",
@@ -178,5 +199,14 @@
  ],
  "sort_field": "modified",
  "sort_order": "DESC",
- "states": []
+ "states": [
+  {
+   "color": "Gray",
+   "title": "Installed"
+  },
+  {
+   "color": "Green",
+   "title": "Delivered"
+  }
+ ]
 }
