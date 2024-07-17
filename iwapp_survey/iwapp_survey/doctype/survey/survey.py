@@ -42,7 +42,7 @@ class Survey(Document):
 						"item_code":item,
 						"qty":qty,
 					})
-			opp_doc.custom_surveys_fetched += 1
+			# opp_doc.custom_surveys_fetched += 1
 			opp_doc.save()
 	
 	def before_cancel(self):

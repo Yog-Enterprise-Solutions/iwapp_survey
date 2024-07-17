@@ -43,7 +43,7 @@ def create_docs(survey_doc):
         doc.party_name = survey_doc['customer']
         # doc.custom_survey = survey_doc['name']
         doc.custom_site_address = survey_doc['customer_address']
-        # doc.custom_surveys_fetched = 1
+        doc.custom_surveys_fetched = 1
         doc.custom_number_of_surveys = 1
         for item in non_warranty_items:
             doc.append("custom_survey_items", {
@@ -82,7 +82,7 @@ def create_opportunity(survey_doc, items):
     doc.party_name = survey_doc['customer']
     doc.custom_survey = survey_doc['name']
     doc.custom_site_address = survey_doc['customer_address']
-    # doc.custom_surveys_fetched = 1
+    doc.custom_surveys_fetched = 1
     doc.custom_number_of_surveys = 1
     for item in items:
         # frappe.throw(f"{item} received")
