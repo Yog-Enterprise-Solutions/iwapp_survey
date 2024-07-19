@@ -63,7 +63,7 @@ frappe.ui.form.on('Opportunity', {
                 args: {
                     from_doctype: frm.doc.name,
                     customer: frm.doc.party_name,
-                    customer_address: frm.doc.customer_address, // Ensure this is passed
+                    customer_address: frm.doc.customer_address || "", // Ensure this is passed
                     assigned_to: frappe.session.user,
                     items: JSON.stringify(frm.doc.items) // Convert items to JSON string
                 },
